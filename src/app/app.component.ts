@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Angular-Material-with-Mosh';
 
-  isChecked = false;
+  isSubscribed = false;
+
+  onChange() {
+    this.isSubscribed = (this.isSubscribed)? false : true;
+  }
 }

@@ -1,12 +1,20 @@
-<div class="position-relative container">
+<mat-tab-group>
+  <mat-tab label="Checkbox 1">
 
+    <mat-card>
+      <mat-checkbox [checked]="isSubscribed" (change)="onChange()">Subscribe to newspaper</mat-checkbox>
+    </mat-card>
 
-
+  </mat-tab>
+  <mat-tab label="Checkbox 2">
+    <mat-card>
+      <mat-checkbox #showDetails>Show detail information</mat-checkbox>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Slider">
     <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
-    <mat-checkbox
-      value=""
-      [checked]="isChecked"
-      >Subscribe to newsletter </mat-checkbox>
+  </mat-tab>
+</mat-tab-group>
 
-
-</div>
+<div *ngIf="isSubscribed">Breaking news!</div>
+<div *ngIf="showDetails.checked">Detail Information: This checkbox is binded to a template variable.</div>
