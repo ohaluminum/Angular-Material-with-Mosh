@@ -1,20 +1,145 @@
-<mat-tab-group>
-  <mat-tab label="Checkbox 1">
+<div class="container-fluid">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-8">
+      <mat-card>
+        <mat-card-title>Angular Material Tutorial</mat-card-title>
+        <mat-card-subtitle>Angular Material is a UI library component developed by Google in 2014. It is specially
+          designed for
+          AngularJS developer. It helps to design the application in a structured manner, and its components help to
+          construct
+          attractive, consistent, and functional web pages and web applications.
+        </mat-card-subtitle>
 
-    <mat-card>
-      <mat-checkbox [checked]="isSubscribed" (change)="onChange()">Subscribe to newspaper</mat-checkbox>
-    </mat-card>
+        <mat-card-subtitle>Here is some tutorials I am using:
+          <a mat-button href="https://material.angular.io/" color="primary" target="_blank">Official Tutorial</a>
+          <a mat-button href="https://youtu.be/wPT3K3w6JtU" color="primary" target="_blank">Programming with Mosh</a>
+          <a mat-button href="https://youtu.be/jUfEn032IL8" color="primary" target="_blank">FreeCodeCamp.org</a>
+        </mat-card-subtitle>
 
-  </mat-tab>
-  <mat-tab label="Checkbox 2">
-    <mat-card>
-      <mat-checkbox #showDetails>Show detail information</mat-checkbox>
-    </mat-card>
-  </mat-tab>
-  <mat-tab label="Slider">
-    <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
-  </mat-tab>
-</mat-tab-group>
+        <mat-card-content>
 
-<div *ngIf="isSubscribed">Breaking news!</div>
-<div *ngIf="showDetails.checked">Detail Information: This checkbox is binded to a template variable.</div>
+          <mat-tab-group>
+            <mat-tab label="Checkbox">
+              <mat-card>
+                <mat-card-content>
+                  <mat-checkbox [checked]="isSubscribed" (change)="onChange()">Subscribe to newspaper</mat-checkbox>
+                  <mat-checkbox #showDetails>Show detail information</mat-checkbox>
+                </mat-card-content>
+              </mat-card>
+            </mat-tab>
+
+            <mat-tab label="Slider">
+              <mat-slider min="1" max="100" step="1" value="50"></mat-slider>
+            </mat-tab>
+
+            <mat-tab label="Radio Button">
+              <mat-card>
+                <mat-card-content>
+                  <label id="radio-group-label"><b>Pick your favorite season</b></label>
+                  <mat-radio-group aria-labelledby="radio-group-label" [(ngModel)]="favoriteSeason">
+                    <mat-radio-button value="Spring">Spring</mat-radio-button>
+                    <mat-radio-button value="Summer">Summer</mat-radio-button>
+                    <mat-radio-button value="Fall">Fall</mat-radio-button>
+                    <mat-radio-button value="Winter">Winter</mat-radio-button>
+                  </mat-radio-group>
+                  <p><b>Your favorite season is: {{ favoriteSeason }}</b></p>
+                </mat-card-content>
+              </mat-card>
+            </mat-tab>
+
+            <mat-tab label="Drop-down List">
+              <mat-card>
+                <mat-card-content>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Car Make</mat-label>
+                    <mat-select [(ngModel)]="carMake">
+                      <mat-option *ngFor="let make of makes" [value]="make">{{ make }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <p><b>Your car's make is: {{ carMake }}</b></p>
+                </mat-card-content>
+              </mat-card>
+            </mat-tab>
+
+            <mat-tab label="Input">
+              <mat-card>
+                <mat-card-content>
+
+                  <form>
+                    <div class="row justify-content-center">
+                      <div class="col-md-3">
+                        <mat-form-field appearance="legacy">
+                          <mat-label>First Name</mat-label>
+                          <input ngModel
+                            #firstName="ngModel"
+                            name="firstName" 
+                            type="text" matInput required>
+                          <mat-error *ngIf="firstName.invalid && firstName.hasError('required')">First name is required!</mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3">
+                        <mat-form-field appearance="legacy">
+                          <mat-label>Last Name</mat-label>
+                          <input ngModel
+                            #lastName="ngModel"
+                            name="lastName" type="text" matInput required>
+                          <mat-error *ngIf="lastName.invalid && lastName.hasError('required')">Last name is required!</mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3">
+                        <mat-form-field appearance="legacy">
+                          <mat-label>Age</mat-label>
+                          <input type="number" matInput>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-3">
+                        <mat-form-field appearance="legacy">
+                          <mat-label>Gender</mat-label>
+                          <mat-select>
+                            <mat-option value="0">Female</mat-option>
+                            <mat-option value="1">Male</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div class="row md-2">
+                      <div class="col-md-3">
+                        <mat-form-field appearance="legacy">
+                          <mat-label>Phone Number</mat-label>
+                          <input type="text" matInput>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-6">
+                        <mat-form-field appearance="legacy">
+                          <mat-label>Email</mat-label>
+                          <input ngModel 
+                            #email="ngModel"
+                            name="email" 
+                            type="text" matInput required >
+                          <mat-hint>Enter your UH Email address.</mat-hint>
+                          <span matSuffix>@cougarnet.uh.edu</span>
+                          <mat-error *ngIf="email.invalid && email.hasError('required')">Email is required!</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </form>
+
+                </mat-card-content>
+              </mat-card>
+            </mat-tab>
+
+          </mat-tab-group>
+
+          <div *ngIf="isSubscribed">Breaking news!</div>
+          <div *ngIf="showDetails.checked">Detail Information: This checkbox is binded to a template variable.</div>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

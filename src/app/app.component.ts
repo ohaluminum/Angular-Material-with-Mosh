@@ -9,6 +9,20 @@ export class AppComponent {
   title = 'Angular-Material-with-Mosh';
 
   isSubscribed = false;
+  favoriteSeason = "";
+  carMake = "";
+
+  makes = [ 
+    'Mercedes Benz',
+    'Audi',
+    'Toyota',
+    'Hyundai',
+    'GMC',
+    'Honda',
+    'Nissan',
+    'Lincoln',
+    'Ford'
+  ]
 
   onChange() {
     this.isSubscribed = (this.isSubscribed)? false : true;
